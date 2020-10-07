@@ -5,9 +5,9 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2% 5%;
   background-color: ${({ color }) => lighten(0.4, color)};
-  border: 1px solid blue;
+  width: 33%;
+  margin: 0 3px;
 `;
 
 export const Header = styled.div`
@@ -17,4 +17,5 @@ export const Header = styled.div`
   justify-content: center;
   width: 100%;
   flex-direction: column;
+  border-bottom: 5px solid white;
 `;
