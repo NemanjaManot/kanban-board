@@ -1,12 +1,21 @@
 export const ActionTypes = {
-  TEST: 'TEST',
+  ADD_CARD: 'ADD_CARD',
+  EDIT_CARD: 'EDIT_CARD',
+  DELETE_CARD: 'DELETE_CARD',
 };
 
 export const ActionCreators = {
-  testAction: (testState) => {
-    return {
-      type: ActionTypes.TEST,
-      testState,
-    };
-  },
+  addCardAction: (cardType) => ({
+    type: ActionTypes.ADD_CARD,
+    cardType,
+  }),
+  editCardAction: (cardId, text) => ({
+    type: ActionTypes.EDIT_CARD,
+    cardId,
+    text,
+  }),
+  deleteCardAction: (cardId) => ({
+    type: ActionTypes.DELETE_CARD,
+    cardId,
+  }),
 };

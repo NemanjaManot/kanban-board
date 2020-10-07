@@ -10,35 +10,46 @@ import Column from '../components/Column';
 // styles
 import * as S from './styles';
 
-const KanbanScreen = ({ testState, testAction, cards }) => {
-  const handle = () => {
-    testAction('Hello from component');
-  };
-
+const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction }) => {
   const todoCards = cards.filter((card) => card.type === kanbanColumns.TO_DO.type);
   const inProgressCards = cards.filter((card) => card.type === kanbanColumns.IN_PROGRESS.type);
   const doneCards = cards.filter((card) => card.type === kanbanColumns.DONE.type);
+
   return (
     <S.KanbanScreen>
       <S.Title>Kanban Board</S.Title>
       <S.ColumnWrapper>
-        <Column cards={todoCards} heading={kanbanColumns.TO_DO.text} color={kanbanColumns.TO_DO.color} />
+        <Column
+          cards={todoCards}
+          heading={kanbanColumns.TO_DO.text}
+          color={kanbanColumns.TO_DO.color}
+          addCardAction={() => addCardAction(kanbanColumns.TO_DO.type)}
+          editCardAction={editCardAction}
+          deleteCardAction={deleteCardAction}
+        />
         <Column
           cards={inProgressCards}
           heading={kanbanColumns.IN_PROGRESS.text}
           color={kanbanColumns.IN_PROGRESS.color}
+          addCardAction={() => addCardAction(kanbanColumns.IN_PROGRESS.type)}
+          editCardAction={editCardAction}
+          deleteCardAction={deleteCardAction}
         />
-        <Column cards={doneCards} heading={kanbanColumns.DONE.text} color={kanbanColumns.DONE.color} />
+        <Column
+          cards={doneCards}
+          heading={kanbanColumns.DONE.text}
+          color={kanbanColumns.DONE.color}
+          addCardAction={() => addCardAction(kanbanColumns.DONE.type)}
+          editCardAction={editCardAction}
+          deleteCardAction={deleteCardAction}
+        />
       </S.ColumnWrapper>
-      <p>{testState}</p>
-      <button onClick={handle}>change text</button>
     </S.KanbanScreen>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    testState: state.kanbanReducer.testState,
     cards: state.kanbanReducer.cards,
   };
 };
@@ -46,7 +57,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      testAction: ActionCreators.testAction,
+      addCardAction: ActionCreators.addCardAction,
+      editCardAction: ActionCreators.editCardAction,
+      deleteCardAction: ActionCreators.deleteCardAction,
     },
     dispatch,
   );

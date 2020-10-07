@@ -5,18 +5,26 @@ import * as S from './styles';
 // Components
 import IconButton from '../IconButton';
 
-const Card = ({ card, color }) => {
+const Card = ({ card, color, onEdit, onDelete }) => {
   const [isEdit, setIsEdit] = React.useState(false);
 
-  const handleOnBlur = () => {
-    console.log('on blur save');
+  const handleOnBlur = (e) => {
+    onEdit(card.id, e.target.value);
     setIsEdit(false);
   };
 
+  const handleOnDelete = () => {
+    onDelete(card.id);
+  };
+
+  const handleOnDoubleClick = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
-    <S.Card color={color} onDoubleClick={() => setIsEdit(!isEdit)}>
+    <S.Card color={color} onDoubleClick={handleOnDoubleClick}>
       <S.IconButtonWrapper>
-        <IconButton onClick={() => console.log('onClick delete')}>
+        <IconButton onClick={handleOnDelete}>
           <FaRegWindowClose size={18} />
         </IconButton>
       </S.IconButtonWrapper>
