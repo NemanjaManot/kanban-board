@@ -23,3 +23,12 @@ export const IconButtonWrapper = styled.div`
     display: block;
   }
 `;
+
+export const TextArea = styled.textarea`
+  border-width: 0px;
+  border: none;
+  background-color: transparent;
+  background-color: ${({ color }) => lighten(0.3, color)};
+  color: white;
+  font-size: 14px;
+`;
