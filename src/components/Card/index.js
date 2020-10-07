@@ -2,9 +2,9 @@ import React from 'react';
 // Styles
 import * as S from './styles';
 
-const Card = ({ card }) => {
+const Card = ({ card, color }) => {
   return (
-    <S.Card>
+    <S.Card color={color}>
       <p>{card.text}</p>
     </S.Card>
   );

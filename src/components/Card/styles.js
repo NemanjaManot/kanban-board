@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
 
 export const Card = styled.div`
   width: 200px;
@@ -9,4 +10,5 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  background-color: ${({ color }) => lighten(0.15, color)};
 `;

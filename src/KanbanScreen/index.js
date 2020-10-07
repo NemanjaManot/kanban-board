@@ -21,9 +21,13 @@ const KanbanScreen = ({ testState, testAction, cards }) => {
   return (
     <div>
       <S.ColumnWrapper>
-        <Column cards={todoCards} heading={kanbanColumns.TO_DO.text} />
-        <Column cards={inProgressCards} heading={kanbanColumns.IN_PROGRESS.text} />
-        <Column cards={doneCards} heading={kanbanColumns.DONE.text} />
+        <Column cards={todoCards} heading={kanbanColumns.TO_DO.text} color={kanbanColumns.TO_DO.color} />
+        <Column
+          cards={inProgressCards}
+          heading={kanbanColumns.IN_PROGRESS.text}
+          color={kanbanColumns.IN_PROGRESS.color}
+        />
+        <Column cards={doneCards} heading={kanbanColumns.DONE.text} color={kanbanColumns.DONE.color} />
       </S.ColumnWrapper>
       <p>{testState}</p>
       <button onClick={handle}>change text</button>
