@@ -10,7 +10,14 @@ import Column from '../components/Column';
 // styles
 import * as S from './styles';
 
-const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction, editCardTypeAction }) => {
+const KanbanScreen = ({
+  cards,
+  addCardAction,
+  editCardAction,
+  deleteCardAction,
+  editCardTypeAction,
+  saveCurrentCardIdAction,
+}) => {
   const todoCards = cards.filter((card) => card.type === kanbanColumns.TO_DO.type);
   const inProgressCards = cards.filter((card) => card.type === kanbanColumns.IN_PROGRESS.type);
   const doneCards = cards.filter((card) => card.type === kanbanColumns.DONE.type);
@@ -20,7 +27,7 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction, 
       <S.Title>Kanban Board</S.Title>
       <S.ColumnWrapper>
         <Column
-          id={kanbanColumns.TO_DO.type}
+          type={kanbanColumns.TO_DO.type}
           cards={todoCards}
           heading={kanbanColumns.TO_DO.text}
           color={kanbanColumns.TO_DO.color}
@@ -28,9 +35,10 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction, 
           editCardAction={editCardAction}
           deleteCardAction={deleteCardAction}
           editCardTypeAction={editCardTypeAction}
+          saveCurrentCardIdAction={saveCurrentCardIdAction}
         />
         <Column
-          id={kanbanColumns.IN_PROGRESS.type}
+          type={kanbanColumns.IN_PROGRESS.type}
           cards={inProgressCards}
           heading={kanbanColumns.IN_PROGRESS.text}
           color={kanbanColumns.IN_PROGRESS.color}
@@ -38,9 +46,10 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction, 
           editCardAction={editCardAction}
           deleteCardAction={deleteCardAction}
           editCardTypeAction={editCardTypeAction}
+          saveCurrentCardIdAction={saveCurrentCardIdAction}
         />
         <Column
-          id={kanbanColumns.DONE.type}
+          type={kanbanColumns.DONE.type}
           cards={doneCards}
           heading={kanbanColumns.DONE.text}
           color={kanbanColumns.DONE.color}
@@ -48,6 +57,7 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction, 
           editCardAction={editCardAction}
           deleteCardAction={deleteCardAction}
           editCardTypeAction={editCardTypeAction}
+          saveCurrentCardIdAction={saveCurrentCardIdAction}
         />
       </S.ColumnWrapper>
     </S.KanbanScreen>
@@ -67,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
       editCardAction: ActionCreators.editCardAction,
       deleteCardAction: ActionCreators.deleteCardAction,
       editCardTypeAction: ActionCreators.editCardTypeAction,
+      saveCurrentCardIdAction: ActionCreators.saveCurrentCardIdAction,
     },
     dispatch,
   );

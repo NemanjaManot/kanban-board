@@ -3,6 +3,7 @@ export const ActionTypes = {
   EDIT_CARD: 'EDIT_CARD',
   DELETE_CARD: 'DELETE_CARD',
   EDIT_CARD_TYPE: 'EDIT_CARD_TYPE',
+  SAVE_CURRENT_CARD_ID: 'SAVE_CURRENT_CARD_ID',
 };
 
 export const ActionCreators = {
@@ -19,9 +20,12 @@ export const ActionCreators = {
     type: ActionTypes.DELETE_CARD,
     cardId,
   }),
-  editCardTypeAction: (cardId, cardType) => ({
+  editCardTypeAction: (cardType) => ({
     type: ActionTypes.EDIT_CARD_TYPE,
-    cardId,
     cardType,
+  }),
+  saveCurrentCardIdAction: (cardId) => ({
+    type: ActionTypes.SAVE_CURRENT_CARD_ID,
+    cardId,
   }),
 };

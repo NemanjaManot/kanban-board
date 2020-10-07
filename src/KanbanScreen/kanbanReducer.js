@@ -8,6 +8,7 @@ export const initialState = {
     { id: uuid(), type: 'DONE', text: 'Test latest build' },
     { id: uuid(), type: 'DONE', text: 'Update documentation' },
   ],
+  currentCardId: null,
 };
 
 export default function kanbanReducer(state = initialState, action) {
@@ -35,6 +36,18 @@ export default function kanbanReducer(state = initialState, action) {
       return {
         ...state,
         cards: state.cards.filter((card) => card.id !== action.cardId),
+      };
+    }
+    case ActionTypes.EDIT_CARD_TYPE: {
+      return {
+        ...state,
+        cards: state.cards,
+      };
+    }
+    case ActionTypes.SAVE_CURRENT_CARD_ID: {
+      return {
+        ...state,
+        currentCardId: action.cardId,
       };
     }
     default:
