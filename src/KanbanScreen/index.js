@@ -26,13 +26,13 @@ const KanbanScreen = ({ testState, testAction, cards }) => {
   const drag = (ev) => {
     ev.dataTransfer.setData('text', ev.target.id);
     console.log('drag');
-    console.log(ev.target.id);
+    console.log(ev.currentTarget.id);
   };
 
   const drop = (ev) => {
     ev.preventDefault();
     console.log('drop');
-    console.log(ev.target.id);
+    console.log(ev.currentTarget.id);
   };
 
   return (
