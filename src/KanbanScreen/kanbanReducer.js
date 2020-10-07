@@ -41,7 +41,7 @@ export default function kanbanReducer(state = initialState, action) {
     case ActionTypes.EDIT_CARD_TYPE: {
       return {
         ...state,
-        cards: state.cards,
+        cards: state.cards.map((card) => (card.id === state.currentCardId ? { ...card, type: action.cardType } : card)),
       };
     }
     case ActionTypes.SAVE_CURRENT_CARD_ID: {
