@@ -5,7 +5,7 @@ import * as S from './styles';
 // Components
 import IconButton from '../IconButton';
 
-const Card = ({ card, color }) => {
+const Card = ({ card, color, handleOnDragStart }) => {
   const [isEdit, setIsEdit] = React.useState(false);
 
   const handleOnBlur = () => {
@@ -14,7 +14,13 @@ const Card = ({ card, color }) => {
   };
 
   return (
-    <S.Card color={color} onDoubleClick={() => setIsEdit(!isEdit)}>
+    <S.Card
+      draggable="true"
+      id={card.id}
+      onDragStart={handleOnDragStart}
+      color={color}
+      onDoubleClick={() => setIsEdit(!isEdit)}
+    >
       <S.IconButtonWrapper>
         <IconButton onClick={() => console.log('onClick delete')}>
           <FaRegWindowClose size={18} />
