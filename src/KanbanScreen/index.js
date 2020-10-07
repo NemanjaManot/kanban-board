@@ -10,11 +10,7 @@ import Column from '../components/Column';
 // styles
 import * as S from './styles';
 
-const KanbanScreen = ({ testState, testAction, cards }) => {
-  const handle = () => {
-    testAction('Hello from component');
-  };
-
+const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction }) => {
   const todoCards = cards.filter((card) => card.type === kanbanColumns.TO_DO.type);
   const inProgressCards = cards.filter((card) => card.type === kanbanColumns.IN_PROGRESS.type);
   const doneCards = cards.filter((card) => card.type === kanbanColumns.DONE.type);
@@ -44,6 +40,9 @@ const KanbanScreen = ({ testState, testAction, cards }) => {
           cards={todoCards}
           heading={kanbanColumns.TO_DO.text}
           color={kanbanColumns.TO_DO.color}
+          addCardAction={() => addCardAction(kanbanColumns.TO_DO.type)}
+          editCardAction={editCardAction}
+          deleteCardAction={deleteCardAction}
           handleOnDragOver={allowDrop}
           handleOnDrop={drop}
           handleOnDragStart={drag}
@@ -53,6 +52,9 @@ const KanbanScreen = ({ testState, testAction, cards }) => {
           cards={inProgressCards}
           heading={kanbanColumns.IN_PROGRESS.text}
           color={kanbanColumns.IN_PROGRESS.color}
+          addCardAction={() => addCardAction(kanbanColumns.IN_PROGRESS.type)}
+          editCardAction={editCardAction}
+          deleteCardAction={deleteCardAction}
           handleOnDragOver={allowDrop}
           handleOnDrop={drop}
           handleOnDragStart={drag}
@@ -62,20 +64,20 @@ const KanbanScreen = ({ testState, testAction, cards }) => {
           cards={doneCards}
           heading={kanbanColumns.DONE.text}
           color={kanbanColumns.DONE.color}
+          addCardAction={() => addCardAction(kanbanColumns.DONE.type)}
+          editCardAction={editCardAction}
+          deleteCardAction={deleteCardAction}
           handleOnDragOver={allowDrop}
           handleOnDrop={drop}
           handleOnDragStart={drag}
         />
       </S.ColumnWrapper>
-      <p>{testState}</p>
-      <button onClick={handle}>change text</button>
     </S.KanbanScreen>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    testState: state.kanbanReducer.testState,
     cards: state.kanbanReducer.cards,
   };
 };
@@ -83,7 +85,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      testAction: ActionCreators.testAction,
+      addCardAction: ActionCreators.addCardAction,
+      editCardAction: ActionCreators.editCardAction,
+      deleteCardAction: ActionCreators.deleteCardAction,
     },
     dispatch,
   );

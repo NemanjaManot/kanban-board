@@ -1,21 +1,40 @@
 import { ActionTypes } from './kanbanActions';
+import { v4 as uuid } from 'uuid';
 
-const initialState = {
-  testState: 'Hello from reducer',
+export const initialState = {
   cards: [
-    { id: 1, type: 'TO_DO', text: 'Hey ' },
-    { id: 2, type: 'IN_PROGRESS', text: 'hey you in progress' },
-    { id: 3, type: 'DONE', text: 'im done' },
-    { id: 4, type: 'DONE', text: 'im done too' },
+    { id: uuid(), type: 'TO_DO', text: 'Review request for proposal ' },
+    { id: uuid(), type: 'IN_PROGRESS', text: 'Prepare for client meeting' },
+    { id: uuid(), type: 'DONE', text: 'Test latest build' },
+    { id: uuid(), type: 'DONE', text: 'Update documentation' },
   ],
 };
 
 export default function kanbanReducer(state = initialState, action) {
   switch (action.type) {
-    case ActionTypes.TEST: {
+    case ActionTypes.ADD_CARD: {
       return {
         ...state,
-        testState: action.testState,
+        cards: [
+          ...state.cards,
+          {
+            id: uuid(),
+            type: action.cardType,
+            text: 'Enter text...',
+          },
+        ],
+      };
+    }
+    case ActionTypes.EDIT_CARD: {
+      return {
+        ...state,
+        cards: state.cards.map((card) => (card.id === action.cardId ? { ...card, text: action.text } : card)),
+      };
+    }
+    case ActionTypes.DELETE_CARD: {
+      return {
+        ...state,
+        cards: state.cards.filter((card) => card.id !== action.cardId),
       };
     }
     default:
