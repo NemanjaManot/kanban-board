@@ -18,4 +18,14 @@ export const Header = styled.div`
   width: 100%;
   flex-direction: column;
   border-bottom: 5px solid white;
+  position: relative;
+`;
+
+export const Heading = styled.h2`
+  margin-bottom: 0;
+`;
+
+export const IconButtonWrapper = styled.div`
+  position: absolute;
+  right: 10px;
 `;
