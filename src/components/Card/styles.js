@@ -10,4 +10,16 @@ export const Card = styled.div`
   justify-content: center;
   margin: 10px 0;
   background-color: ${({ color }) => lighten(0.15, color)};
+  position: relative;
+`;
+
+export const IconButtonWrapper = styled.div`
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  display: none;
+
+  ${Card}:hover & {
+    display: block;
+  }
 `;

@@ -19,7 +19,7 @@ const Column = ({ cards, heading, color }) => {
         </S.IconButtonWrapper>
       </S.Header>
       {cards.map((card) => (
-        <Card card={card} color={color} />
+        <Card key={card.id} card={card} color={color} />
       ))}
     </S.Column>
   );
