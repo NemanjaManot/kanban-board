@@ -20,6 +20,7 @@ const KanbanScreen = ({ testState, testAction, cards }) => {
   const doneCards = cards.filter((card) => card.type === kanbanColumns.DONE.type);
   return (
     <S.KanbanScreen>
+      <S.Title>Kanban Board</S.Title>
       <S.ColumnWrapper>
         <Column cards={todoCards} heading={kanbanColumns.TO_DO.text} color={kanbanColumns.TO_DO.color} />
         <Column
