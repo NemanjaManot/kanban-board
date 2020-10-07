@@ -17,22 +17,18 @@ const Column = ({
   editCardTypeAction,
   saveCurrentCardIdAction,
 }) => {
-  const handleOnDragOver = (ev) => {
-    ev.preventDefault();
+  const handleOnDragOver = (e) => {
+    e.preventDefault();
   };
 
-  const handleOnDragStart = (ev) => {
-    ev.dataTransfer.setData('text', ev.target.id);
-    saveCurrentCardIdAction(ev.target.id);
-    console.log('drag');
-    console.log(ev.currentTarget.id);
+  const handleOnDragStart = (e) => {
+    e.dataTransfer.setData('text', e.target.id);
+    saveCurrentCardIdAction(e.target.id);
   };
 
-  const handleOnDrop = (ev) => {
-    ev.preventDefault();
-    editCardTypeAction(ev.currentTarget.id);
-    console.log('drop');
-    console.log(ev.currentTarget.id);
+  const handleOnDrop = (e) => {
+    e.preventDefault();
+    editCardTypeAction(e.currentTarget.id);
   };
 
   return (

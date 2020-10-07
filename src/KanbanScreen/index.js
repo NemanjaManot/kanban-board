@@ -18,47 +18,28 @@ const KanbanScreen = ({
   editCardTypeAction,
   saveCurrentCardIdAction,
 }) => {
-  const todoCards = cards.filter((card) => card.type === kanbanColumns.TO_DO.type);
-  const inProgressCards = cards.filter((card) => card.type === kanbanColumns.IN_PROGRESS.type);
-  const doneCards = cards.filter((card) => card.type === kanbanColumns.DONE.type);
+  const getColumnCards = (type) => cards.filter((card) => card.type === type);
 
   return (
     <S.KanbanScreen>
       <S.Title>Kanban Board</S.Title>
       <S.ColumnWrapper>
-        <Column
-          type={kanbanColumns.TO_DO.type}
-          cards={todoCards}
-          heading={kanbanColumns.TO_DO.text}
-          color={kanbanColumns.TO_DO.color}
-          addCardAction={() => addCardAction(kanbanColumns.TO_DO.type)}
-          editCardAction={editCardAction}
-          deleteCardAction={deleteCardAction}
-          editCardTypeAction={editCardTypeAction}
-          saveCurrentCardIdAction={saveCurrentCardIdAction}
-        />
-        <Column
-          type={kanbanColumns.IN_PROGRESS.type}
-          cards={inProgressCards}
-          heading={kanbanColumns.IN_PROGRESS.text}
-          color={kanbanColumns.IN_PROGRESS.color}
-          addCardAction={() => addCardAction(kanbanColumns.IN_PROGRESS.type)}
-          editCardAction={editCardAction}
-          deleteCardAction={deleteCardAction}
-          editCardTypeAction={editCardTypeAction}
-          saveCurrentCardIdAction={saveCurrentCardIdAction}
-        />
-        <Column
-          type={kanbanColumns.DONE.type}
-          cards={doneCards}
-          heading={kanbanColumns.DONE.text}
-          color={kanbanColumns.DONE.color}
-          addCardAction={() => addCardAction(kanbanColumns.DONE.type)}
-          editCardAction={editCardAction}
-          deleteCardAction={deleteCardAction}
-          editCardTypeAction={editCardTypeAction}
-          saveCurrentCardIdAction={saveCurrentCardIdAction}
-        />
+        {Object.entries(kanbanColumns).map(([key, value]) => {
+          return (
+            <Column
+              key={key}
+              type={value.type}
+              cards={getColumnCards(value.type)}
+              heading={value.text}
+              color={value.color}
+              addCardAction={() => addCardAction(value.type)}
+              editCardAction={editCardAction}
+              deleteCardAction={deleteCardAction}
+              editCardTypeAction={editCardTypeAction}
+              saveCurrentCardIdAction={saveCurrentCardIdAction}
+            />
+          );
+        })}
       </S.ColumnWrapper>
     </S.KanbanScreen>
   );
