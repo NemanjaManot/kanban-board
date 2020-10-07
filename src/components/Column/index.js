@@ -6,18 +6,27 @@ import IconButton from '../IconButton';
 // Styles
 import * as S from './styles';
 
-const Column = ({
-  cards,
-  heading,
-  color,
-  addCardAction,
-  editCardAction,
-  deleteCardAction,
-  id,
-  handleOnDrop,
-  handleOnDragOver,
-  handleOnDragStart,
-}) => {
+const Column = ({ cards, heading, color, addCardAction, editCardAction, deleteCardAction, id, editCardTypeAction }) => {
+  const [currentCardId, setCurrentCardId] = React.useState(null);
+
+  const handleOnDragOver = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleOnDragStart = (ev) => {
+    ev.dataTransfer.setData('text', ev.target.id);
+    setCurrentCardId(ev.target.id);
+    console.log('drag setCurrentCardId');
+    console.log(ev.currentTarget.id);
+  };
+
+  const handleOnDrop = (ev) => {
+    ev.preventDefault();
+    editCardTypeAction(currentCardId, ev.currentTarget.id);
+    console.log('drop');
+    console.log(ev.currentTarget.id);
+  };
+
   return (
     <S.Column color={color} id={id} onDrop={handleOnDrop} onDragOver={handleOnDragOver}>
       <S.Header color={color}>

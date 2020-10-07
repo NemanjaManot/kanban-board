@@ -10,26 +10,10 @@ import Column from '../components/Column';
 // styles
 import * as S from './styles';
 
-const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction }) => {
+const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction, editCardTypeAction }) => {
   const todoCards = cards.filter((card) => card.type === kanbanColumns.TO_DO.type);
   const inProgressCards = cards.filter((card) => card.type === kanbanColumns.IN_PROGRESS.type);
   const doneCards = cards.filter((card) => card.type === kanbanColumns.DONE.type);
-
-  const allowDrop = (ev) => {
-    ev.preventDefault();
-  };
-
-  const drag = (ev) => {
-    ev.dataTransfer.setData('text', ev.target.id);
-    console.log('drag');
-    console.log(ev.currentTarget.id);
-  };
-
-  const drop = (ev) => {
-    ev.preventDefault();
-    console.log('drop');
-    console.log(ev.currentTarget.id);
-  };
 
   return (
     <S.KanbanScreen>
@@ -43,9 +27,7 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction }
           addCardAction={() => addCardAction(kanbanColumns.TO_DO.type)}
           editCardAction={editCardAction}
           deleteCardAction={deleteCardAction}
-          handleOnDragOver={allowDrop}
-          handleOnDrop={drop}
-          handleOnDragStart={drag}
+          editCardTypeAction={editCardTypeAction}
         />
         <Column
           id={kanbanColumns.IN_PROGRESS.type}
@@ -55,9 +37,7 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction }
           addCardAction={() => addCardAction(kanbanColumns.IN_PROGRESS.type)}
           editCardAction={editCardAction}
           deleteCardAction={deleteCardAction}
-          handleOnDragOver={allowDrop}
-          handleOnDrop={drop}
-          handleOnDragStart={drag}
+          editCardTypeAction={editCardTypeAction}
         />
         <Column
           id={kanbanColumns.DONE.type}
@@ -67,9 +47,7 @@ const KanbanScreen = ({ cards, addCardAction, editCardAction, deleteCardAction }
           addCardAction={() => addCardAction(kanbanColumns.DONE.type)}
           editCardAction={editCardAction}
           deleteCardAction={deleteCardAction}
-          handleOnDragOver={allowDrop}
-          handleOnDrop={drop}
-          handleOnDragStart={drag}
+          editCardTypeAction={editCardTypeAction}
         />
       </S.ColumnWrapper>
     </S.KanbanScreen>
@@ -88,6 +66,7 @@ const mapDispatchToProps = (dispatch) => {
       addCardAction: ActionCreators.addCardAction,
       editCardAction: ActionCreators.editCardAction,
       deleteCardAction: ActionCreators.deleteCardAction,
+      editCardTypeAction: ActionCreators.editCardTypeAction,
     },
     dispatch,
   );
