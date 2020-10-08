@@ -1,5 +1,7 @@
 import { ActionTypes } from './kanbanActions';
 import { v4 as uuid } from 'uuid';
+// functions
+import { addCard, editCard, deleteCard, editCardType } from '../utils';
 
 const initialCards = [
   { id: uuid(), type: 'TO_DO', text: 'Review request for proposal ' },
@@ -18,32 +20,25 @@ export default function kanbanReducer(state = initialState, action) {
     case ActionTypes.ADD_CARD: {
       return {
         ...state,
-        cards: [
-          ...state.cards,
-          {
-            id: uuid(),
-            type: action.cardType,
-            text: 'Enter text...',
-          },
-        ],
+        cards: addCard(state.cards, action.cardType),
       };
     }
     case ActionTypes.EDIT_CARD: {
       return {
         ...state,
-        cards: state.cards.map((card) => (card.id === action.cardId ? { ...card, text: action.text } : card)),
+        cards: editCard(state.cards, action.cardId, action.text),
       };
     }
     case ActionTypes.DELETE_CARD: {
       return {
         ...state,
-        cards: state.cards.filter((card) => card.id !== action.cardId),
+        cards: deleteCard(state.cards, action.cardId),
       };
     }
     case ActionTypes.EDIT_CARD_TYPE: {
       return {
         ...state,
-        cards: state.cards.map((card) => (card.id === state.currentCardId ? { ...card, type: action.cardType } : card)),
+        cards: editCardType(state.cards, state.currentCardId, action.cardType),
       };
     }
     case ActionTypes.SAVE_CURRENT_CARD_ID: {
