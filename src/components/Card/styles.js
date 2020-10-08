@@ -11,6 +11,7 @@ export const Card = styled.div`
   margin: 10px 0;
   background-color: ${({ color }) => lighten(0.15, color)};
   position: relative;
+  cursor: grab;
 `;
 
 export const IconButtonWrapper = styled.div`

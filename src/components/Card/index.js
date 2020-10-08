@@ -31,7 +31,7 @@ const Card = ({ card, color, onEdit, onDelete, handleOnDragStart }) => {
     >
       <S.IconButtonWrapper>
         <IconButton onClick={handleOnDelete}>
-          <FaRegWindowClose size={18} />
+          <FaRegWindowClose cursor="pointer" size={18} />
         </IconButton>
       </S.IconButtonWrapper>
       {isEdit ? (

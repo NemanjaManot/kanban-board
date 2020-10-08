@@ -38,7 +38,7 @@ const Column = ({
         <p>({cards.length})</p>
         <S.IconButtonWrapper>
           <IconButton onClick={addCardAction}>
-            <FaPlus />
+            <FaPlus cursor="pointer" />
           </IconButton>
         </S.IconButtonWrapper>
       </S.Header>

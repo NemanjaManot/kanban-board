@@ -21,6 +21,9 @@ export const SearchInput = styled.input`
   position: absolute;
   right: 0;
   padding: 5px;
+  color: #102540;
+  text-align: right;
+  cursor: pointer;
 `;
 
 export const Header = styled.div`
