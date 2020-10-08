@@ -10,6 +10,8 @@ import Column from '../components/Column';
 // styles
 import * as S from './styles';
 
+let debounce;
+
 const KanbanScreen = ({
   cards,
   addCardAction,
@@ -17,12 +19,32 @@ const KanbanScreen = ({
   deleteCardAction,
   editCardTypeAction,
   saveCurrentCardIdAction,
+  searchCardsAction,
 }) => {
   const getColumnCards = (type) => cards.filter((card) => card.type === type);
 
+  React.useEffect(() => {
+    return () => {
+      if (debounce) {
+        clearTimeout(debounce);
+      }
+    };
+  }, []);
+
+  const handleSearchCard = (e) => {
+    const query = e.target.value;
+    if (debounce) {
+      clearTimeout(debounce);
+    }
+    debounce = setTimeout(() => searchCardsAction(query), 500);
+  };
+
   return (
     <S.KanbanScreen>
-      <S.Title>Kanban Board</S.Title>
+      <S.Header>
+        <S.Title>Kanban Board</S.Title>
+        <S.SearchInput placeholder="Search cards" onChange={handleSearchCard} />
+      </S.Header>
       <S.ColumnWrapper>
         {Object.entries(kanbanColumns).map(([key, value]) => {
           return (
@@ -59,6 +81,7 @@ const mapDispatchToProps = (dispatch) => {
       deleteCardAction: ActionCreators.deleteCardAction,
       editCardTypeAction: ActionCreators.editCardTypeAction,
       saveCurrentCardIdAction: ActionCreators.saveCurrentCardIdAction,
+      searchCardsAction: ActionCreators.searchCardsAction,
     },
     dispatch,
   );

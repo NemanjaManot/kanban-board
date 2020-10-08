@@ -4,6 +4,7 @@ export const ActionTypes = {
   DELETE_CARD: 'DELETE_CARD',
   EDIT_CARD_TYPE: 'EDIT_CARD_TYPE',
   SAVE_CURRENT_CARD_ID: 'SAVE_CURRENT_CARD_ID',
+  SEARCH_CARDS: 'SEARCH_CARDS',
 };
 
 export const ActionCreators = {
@@ -27,5 +28,9 @@ export const ActionCreators = {
   saveCurrentCardIdAction: (cardId) => ({
     type: ActionTypes.SAVE_CURRENT_CARD_ID,
     cardId,
+  }),
+  searchCardsAction: (text) => ({
+    type: ActionTypes.SEARCH_CARDS,
+    text,
   }),
 };

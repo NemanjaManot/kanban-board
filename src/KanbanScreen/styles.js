@@ -16,3 +16,16 @@ export const ColumnWrapper = styled.div`
   width: 100%;
   margin: 5% auto;
 `;
+
+export const SearchInput = styled.input`
+  position: absolute;
+  right: 0;
+  padding: 5px;
+`;
+
+export const Header = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

@@ -1,13 +1,15 @@
 import { ActionTypes } from './kanbanActions';
 import { v4 as uuid } from 'uuid';
 
+const initialCards = [
+  { id: uuid(), type: 'TO_DO', text: 'Review request for proposal ' },
+  { id: uuid(), type: 'IN_PROGRESS', text: 'Prepare for client meeting' },
+  { id: uuid(), type: 'DONE', text: 'Test latest build' },
+  { id: uuid(), type: 'DONE', text: 'Update documentation' },
+];
+
 export const initialState = {
-  cards: [
-    { id: uuid(), type: 'TO_DO', text: 'Review request for proposal ' },
-    { id: uuid(), type: 'IN_PROGRESS', text: 'Prepare for client meeting' },
-    { id: uuid(), type: 'DONE', text: 'Test latest build' },
-    { id: uuid(), type: 'DONE', text: 'Update documentation' },
-  ],
+  cards: initialCards,
   currentCardId: null,
 };
 
@@ -48,6 +50,12 @@ export default function kanbanReducer(state = initialState, action) {
       return {
         ...state,
         currentCardId: action.cardId,
+      };
+    }
+    case ActionTypes.SEARCH_CARDS: {
+      return {
+        ...state,
+        cards: state.cards.filter((card) => card.text.toLowerCase().includes(action.text.toLowerCase())),
       };
     }
     default:
