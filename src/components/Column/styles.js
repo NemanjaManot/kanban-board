@@ -8,6 +8,11 @@ export const Column = styled.div`
   background-color: ${({ color }) => lighten(0.4, color)};
   width: 33%;
   margin: 0 3px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    border-bottom: 5px solid white;
+  }
 `;
 
 export const Header = styled.div`

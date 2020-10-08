@@ -6,12 +6,3 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-*:focus {
-  outline: none;
-  border-bottom: 2px solid #e12a5a;
-}
