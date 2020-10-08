@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ThemeContext } from 'styled-components';
 // Actions
 import { ActionCreators } from './kanbanActions';
 // Config
@@ -22,6 +23,7 @@ const KanbanScreen = ({
 }) => {
   const [searchedResult, setSearchedResult] = useState(cards);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const themeContext = useContext(ThemeContext);
 
   const getColumnCards = (type) => searchedResult.filter((card) => card.type === type);
 
@@ -56,7 +58,7 @@ const KanbanScreen = ({
       <S.Header>
         <S.Title>Kanban Board</S.Title>
         <S.SearchWrapper>
-          <S.SearchIcon color={isSearchFocused ? '#e12a5a' : '#102540'} size={14} />
+          <S.SearchIcon color={isSearchFocused ? themeContext.secondaryColor : themeContext.tertiaryColor} size={14} />
           <S.SearchInput
             placeholder="Search cards"
             onChange={handleSearchCard}

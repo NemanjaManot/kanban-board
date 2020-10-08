@@ -15,7 +15,7 @@ export const KanbanScreen = styled.div`
 
 export const Title = styled.h1`
   text-align: center;
-  color: #102540;
+  color: ${(props) => props.theme.tertiaryColor};
 `;
 
 export const ColumnWrapper = styled.div`
@@ -42,14 +42,14 @@ export const SearchIcon = styled(FaSearch)`
 
 export const SearchInput = styled.input`
   padding: 5px;
-  color: #102540;
+  color: ${(props) => props.theme.tertiaryColor};
   text-align: center;
   cursor: pointer;
   border-width: 0 0 2px 0;
 
   &:focus {
     outline: none;
-    border-bottom-color: #e12a5a;
+    border-bottom-color: ${(props) => props.theme.secondaryColor};
   }
 `;
 
