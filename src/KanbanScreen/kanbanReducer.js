@@ -52,12 +52,6 @@ export default function kanbanReducer(state = initialState, action) {
         currentCardId: action.cardId,
       };
     }
-    case ActionTypes.SEARCH_CARDS: {
-      return {
-        ...state,
-        cards: state.cards.filter((card) => card.text.toLowerCase().includes(action.text.toLowerCase())),
-      };
-    }
     default:
       return state;
   }

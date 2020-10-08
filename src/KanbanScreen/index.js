@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
@@ -19,11 +19,16 @@ const KanbanScreen = ({
   deleteCardAction,
   editCardTypeAction,
   saveCurrentCardIdAction,
-  searchCardsAction,
 }) => {
-  const getColumnCards = (type) => cards.filter((card) => card.type === type);
+  const [searchedResult, setSearchedResult] = React.useState(cards);
 
-  React.useEffect(() => {
+  const getColumnCards = (type) => searchedResult.filter((card) => card.type === type);
+
+  useEffect(() => {
+    setSearchedResult(cards);
+  }, [cards]);
+
+  useEffect(() => {
     return () => {
       if (debounce) {
         clearTimeout(debounce);
@@ -36,7 +41,9 @@ const KanbanScreen = ({
     if (debounce) {
       clearTimeout(debounce);
     }
-    debounce = setTimeout(() => searchCardsAction(query), 500);
+    debounce = setTimeout(() => {
+      setSearchedResult(cards.filter((card) => card.text.toLowerCase().includes(query.toLowerCase())));
+    }, 500);
   };
 
   return (
@@ -81,7 +88,6 @@ const mapDispatchToProps = (dispatch) => {
       deleteCardAction: ActionCreators.deleteCardAction,
       editCardTypeAction: ActionCreators.editCardTypeAction,
       saveCurrentCardIdAction: ActionCreators.saveCurrentCardIdAction,
-      searchCardsAction: ActionCreators.searchCardsAction,
     },
     dispatch,
   );
