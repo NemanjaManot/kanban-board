@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Actions
@@ -20,7 +20,8 @@ const KanbanScreen = ({
   editCardTypeAction,
   saveCurrentCardIdAction,
 }) => {
-  const [searchedResult, setSearchedResult] = React.useState(cards);
+  const [searchedResult, setSearchedResult] = useState(cards);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const getColumnCards = (type) => searchedResult.filter((card) => card.type === type);
 
@@ -46,11 +47,23 @@ const KanbanScreen = ({
     }, 500);
   };
 
+  const handleOnFocus = () => setIsSearchFocused(true);
+
+  const handleOnBlur = () => setIsSearchFocused(false);
+
   return (
     <S.KanbanScreen>
       <S.Header>
         <S.Title>Kanban Board</S.Title>
-        <S.SearchInput placeholder="Search cards" onChange={handleSearchCard} />
+        <S.SearchWrapper>
+          <S.SearchIcon color={isSearchFocused ? '#e12a5a' : '#102540'} size={14} />
+          <S.SearchInput
+            placeholder="Search cards"
+            onChange={handleSearchCard}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+          />
+        </S.SearchWrapper>
       </S.Header>
       <S.ColumnWrapper>
         {Object.entries(kanbanColumns).map(([key, value]) => {
