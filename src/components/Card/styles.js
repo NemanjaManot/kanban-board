@@ -12,6 +12,11 @@ export const Card = styled.div`
   background-color: ${({ color }) => lighten(0.15, color)};
   position: relative;
   cursor: grab;
+  padding: 5px;
+`;
+
+export const Paragraph = styled.p`
+  text-align: center;
 `;
 
 export const IconButtonWrapper = styled.div`

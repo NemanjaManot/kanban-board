@@ -35,9 +35,9 @@ const Card = ({ card, color, onEdit, onDelete, handleOnDragStart }) => {
         </IconButton>
       </S.IconButtonWrapper>
       {isEdit ? (
-        <S.TextArea defaultValue={card.text} onBlur={handleOnBlur} rows={4} color={color} />
+        <S.TextArea defaultValue={card.text} onBlur={handleOnBlur} rows={4} maxLength={80} color={color} />
       ) : (
-        <p>{card.text}</p>
+        <S.Paragraph>{card.text}</S.Paragraph>
       )}
     </S.Card>
   );
