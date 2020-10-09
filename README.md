@@ -12,6 +12,9 @@ Also, each ticket is draggable to any other column.
 **Edit ticket** by double clicking on it. 
 When hovering over ticket, X icon will be shown and by clicking on it **ticket will be deleted**.
 
+## Live
+Check it live on this link: https://nemanjamanot.github.io/kanban-board/
+
 ## Installation
 
 Clone Github repo (or download zip):
